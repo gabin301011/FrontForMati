@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/33beafc557.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="reservation/reservation.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezerwacje</title>
+</head>
+<body>
+    <div class="container main-box" style="padding-bottom: 15px;">
+        <div class="header-main-box">
+            Rezerwacje
+        </div>
+        <div style="display: flex; flex-direction: row; padding-top: 15px; padding-bottom: 10px;">
+            <div style="display: flex; width: 20%;">
+                <button type="button" class="btn" onclick="onBackClick()" style="margin-left: 5px;">
+                    <i class="fa-solid fa-left-long fa-2xl" style="color: #0c5bd1"></i>
+                </button>
+            </div>
+        </div>
+        <div style="display: none;">
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked onclick="onCarClick()">
+                <label class="btn btn-outline-primary" for="btnradio1">Pojazdy</label>      
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"  onclick="onUserClick()">
+                <label class="btn btn-outline-primary" for="btnradio3">Użytkownicy</label>
+              </div>
+        </div>
+        <div class="container" id="main-box"></div>
+    </div>
+    <script type="text/javascript" src="reservation/reservation.js"></script>
+    <script type="text/javascript" src="/js/cookies.js"></script>
+</body>
+</html>          

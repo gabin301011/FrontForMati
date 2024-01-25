@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/33beafc557.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="carsStatistic/carStat.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STat per pojazd</title>
+</head>
+<body>
+    <div class="container main-box" style="padding-bottom: 15px;">
+        <div class="header-main-box">
+            Statystyka pojazdu
+        </div>
+        <div class="info-box">
+            <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; width: 20%;">
+                    <button type="button" class="btn" onclick="onBackClick()" style="margin-left: 5px;">
+                        <i class="fa-solid fa-left-long fa-2xl" style="color: #0c5bd1"></i>
+                    </button>
+                </div>
+                <div class="" style="display: flex; flex-direction: column; width: 60%;">
+                    <div class="" style="justify-content: center; align-items: center; display: flex;">
+                        <strong id="model"></strong>
+                    </div>
+                    <div class="" style="justify-content: center; align-items: center; display: flex;"><strong id="registerNumber"></strong></div>
+                    <div class="" style="justify-content: center; align-items: center; display: flex;"><strong id="productionYear"></strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="char-title"></div>
+        <div class="info-box">
+            <canvas id="myChart"></canvas>
+            <canvas id="myChart2"></canvas>
+            <canvas id="myChart3" style="display: none;"></canvas>
+        </div>
+        <div class="container" id="main-box" style="padding-top: 10px;"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+    <script type="text/javascript" src="carsStatistic/carStat.js"></script>
+    <script type="text/javascript" src="/js/cookies.js"></script>
+</body>
+</html>

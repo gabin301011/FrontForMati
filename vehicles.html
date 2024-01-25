@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/33beafc557.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="vehicle/vehicles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pojazdy</title>
+</head>
+<body>
+    <div class="container main-box" style="padding-bottom: 15px;">
+        <div class="header-main-box">
+            Pojazdy
+        </div>
+        <div style="display: flex; flex-direction: row; padding-top: 15px; padding-bottom: 10px; padding-right: 15px;">
+            <div style="display: flex; flex-direction: row; justify-content: space-between;  width: 100%;">
+                <button type="button" class="btn" onclick="onBackClick()" style="margin-left: 5px;">
+                    <i class="fa-solid fa-left-long fa-2xl" style="color: #0c5bd1"></i>
+                </button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">+ Dodaj pojazd</button>
+            </div>
+        </div>
+        <div class="info-box">
+            <div class="input-group mb-3">
+                <button type="button" class="btn btn-primary" onclick="onFilterChange()">Szukaj</button>
+                <input type="text" id="input-filter" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" onchange="onFilterChange()">
+            </div>
+        </div>
+        <div class="container" id="main-box" style="padding-top: 10px;"></div>
+        <div id="toast-add-vehicle" class="alert alert-success" role="alert" style="position: fixed; bottom: 0; display: none;">
+            Nowy pojazd został dodany!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="onCloseToast()"></button>
+        </div>
+        <div id="toast-update-user" class="alert alert-success" role="alert" style="position: fixed; bottom: 0; display: none;">
+            Dane pojazdu zostały zmienione!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="onCloseToast()"></button>
+        </div>
+        <div id="toast-delete-vehicle" class="alert alert-danger" role="alert" style="position: fixed; bottom: 0; display: none;">
+            Pojazd został usunięty!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="onCloseToast()"></button>
+        </div> 
+    </div>   
+    <!--DODAJ UŻYTKOWNIKA - START-->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span style="color: #24c278;"><strong>DODAJ POJAZD</strong></span>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="container">
+                            <div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Model</span>
+                                    <input type="text" id="input-add-model" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Numer rejestracyjny</span>
+                                    <input type="text" id="input-add-registerNumber" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Vin</span>
+                                    <input type="text" id="input-add-vin" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Rok produkcji</span>
+                                    <input type="number" id="input-add-productionYear" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" id="input-add-vehicleType">
+                                        <option selected value = "-1">Wybierz typ samochodu</option>
+                                        <option value="HATCHBACK">HATCHBACK</option>
+                                        <option value="SEDAN">SEDAN</option>
+                                        <option value="LIFTBACK">LIFTBACK</option>
+                                        <option value="KOMBI">KOMBI</option>
+                                        <option value="SUV">SUV</option>
+                                        <option value="VAN">VAN</option>
+                                        <option value="PICK-UP">PICK-UP</option>
+                                        <option value="CABRIOLET">CABRIOLET</option>
+                                        <option value="ROADSTER">ROADSTER</option>
+                                        <option value="COUPE">COUPE</option>
+                                      </select>
+                                    </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" id="input-add-gearBoxType">
+                                        <option selected value = "-1">Wybierz typ skrzyni</option>
+                                        <option value="AUTOMATYCZNA">AUTOMATYCZNA</option>
+                                        <option value="MANUALNA">MANUALNA</option>
+                                      </select>
+                                    </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" id="input-add-fuelType">
+                                        <option selected value = "-1">Wybierz typ paliwa</option>
+                                        <option value="OLEJ NAPĘDOWY">OLEJ NAPĘDOWY</option>
+                                        <option value="BENZYNA">BENZYNA</option>
+                                        <option value="GAZ/BENZYNA">GAZ/BENZYNA</option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                <select class="form-select" aria-label="Default select example" id="input-add-tiresType">
+                                    <option selected value = "-1">Wybierz typ opony</option>
+                                    <option value="ZIMOWE">ZIMOWE</option>
+                                    <option value="LETNIE">LETNIE</option>
+                                  </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Ubezpieczenie do</span>
+                                    <input type="date" id="input-add-insuranceTo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Przegląd do</span>
+                                    <input type="date" id="input-add-inspectionTo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div id="toast-check-add" class="alert alert-danger" role="alert" style="display: none;"></div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success"  onClick="addNow(this)" id="addNowBtn">Dodaj</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="closeNow()">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--DODAJ UŻYTKOWNIKA - KONIEC-->
+    <!--INFORMACJE - START-->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span style="color: #0c6ffd;"><strong>INFORMACJE</strong></span>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="container">
+                            <div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">ID</span>
+                                    <input type="text" id="input-info-id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Model</span>
+                                    <input type="text" id="input-info-model" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Numer rejestracyjny</span>
+                                    <input type="text" id="input-info-registerNumber" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Vin</span>
+                                    <input type="text" id="input-info-vin" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Rok produkcji</span>
+                                    <input type="number" id="input-info-productionYear" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Typ samochodu</span>
+                                    <input type="text" id="input-info-vehicleType" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Typ skrzyni</span>
+                                    <input type="text" id="input-info-gearBoxType" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Typ paliwa</span>
+                                    <input type="text" id="input-info-fuelType" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Typ opon</span>
+                                    <input type="text" id="input-info-tiresType" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Ubezpieczenie do</span>
+                                    <input type="date" id="input-info-insuranceTo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Przegląd do</span>
+                                    <input type="date" id="input-info-inspectionTo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--INFORMACJE - KONIEC-->
+    <!--UPDATE - START-->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span style="color: #24c278;"><strong>ZMIANA DANYCH POJAZDU</strong></span>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="container">
+                            <div>
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">ID</span>
+                                    <input type="text" id="input-update-id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Model</span>
+                                    <input type="text" id="input-update-model" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Numer rejestracyjny</span>
+                                    <input type="text" id="input-update-registerNumber" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Vin</span>
+                                    <input type="text" id="input-update-vin" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Rok produkcji</span>
+                                    <input type="number" id="input-update-productionYear" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" id="input-update-vehicleType">
+                                        <option selected value = "-1">Wybierz typ samochodu</option>
+                                        <option value="HATCHBACK">HATCHBACK</option>
+                                        <option value="SEDAN">SEDAN</option>
+                                        <option value="LIFTBACK">LIFTBACK</option>
+                                        <option value="KOMBI">KOMBI</option>
+                                        <option value="SUV">SUV</option>
+                                        <option value="VAN">VAN</option>
+                                        <option value="PICK-UP">PICK-UP</option>
+                                        <option value="CABRIOLET">CABRIOLET</option>
+                                        <option value="ROADSTER">ROADSTER</option>
+                                        <option value="COUPE">COUPE</option>
+                                      </select>
+                                    </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" id="input-update-gearBoxType">
+                                        <option selected value = "-1">Wybierz typ skrzyni</option>
+                                        <option value="AUTOMATYCZNA">AUTOMATYCZNA</option>
+                                        <option value="MANUALNA">MANUALNA</option>
+                                      </select>
+                                    </div>
+                                <div class="input-group mb-3">
+                                    <select class="form-select" aria-label="Default select example" id="input-update-fuelType">
+                                        <option selected value = "-1">Wybierz typ paliwa</option>
+                                        <option value="OLEJ NAPĘDOWY">OLEJ NAPĘDOWY</option>
+                                        <option value="BENZYNA">BENZYNA</option>
+                                        <option value="GAZ/BENZYNA">GAZ/BENZYNA</option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                <select class="form-select" aria-label="Default select example" id="input-update-tiresType">
+                                    <option selected value = "-1">Wybierz typ opony</option>
+                                    <option value="ZIMOWE">ZIMOWE</option>
+                                    <option value="LETNIE">LETNIE</option>
+                                  </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Ubezpieczenie do</span>
+                                    <input type="date" id="input-update-insuranceTo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Przegląd do</span>
+                                    <input type="date" id="input-update-inspectionTo" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div id="toast-check-update" class="alert alert-danger" role="alert" style="display: none;"></div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success"  onClick="Update()" id="addNowBtn">Zamień</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="closeNow()">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--UPDATE - KONIEC-->
+    <!--Usuń rezerwacje - START-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span style="color: #dc3545;"><strong>USUŃ POJAZD</strong></span>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="container">
+                            <div id="deleteText"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick="Delete()">Usuń</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Usuń rezerwacje - KONIEC-->
+    <script type="text/javascript" src="vehicle/vehicles.js"></script>
+    <script type="text/javascript" src="/js/cookies.js"></script>
+</body>
+</html>

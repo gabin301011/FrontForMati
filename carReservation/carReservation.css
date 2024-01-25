@@ -1,0 +1,73 @@
+.main-box {
+    background-color: #f1f1f4;
+    -webkit-box-shadow: 0px -1px 25px 4px rgba(212, 231, 208, 1);
+    -moz-box-shadow: 0px -1px 25px 4px rgba(212, 231, 208, 1);
+    box-shadow: 0px -1px 25px 4px rgb(208, 220, 231);
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 0;
+}
+
+.header-main-box {
+    background-color: #0d6efd;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.header-las-fuel {
+    background-color: #2f82ff;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+.info-box {
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+}
+
+.info-elem {
+    display: flex;
+    flex-direction: row;
+}
+
+.info-elem-left {
+    width: 50%;
+    justify-content: right;
+    align-items: center;
+    display: flex;
+}
+
+.info-elem-right {
+    width: 50%;
+    justify-content: left;
+    align-items: center;
+    display: flex;
+}
+
+.car-elem {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 2px;
+    background-color: white;
+    -webkit-box-shadow: 0px 8px 17px 1px rgba(212, 231, 208, 1);
+    -moz-box-shadow: 0px 8px 17px 1px rgba(212, 231, 208, 1);
+    box-shadow: 0px 8px 17px 1px rgba(212, 231, 208, 1);
+    border-radius: 5px;
+    display: flex;
+    padding: 0;
+    flex-direction: row;
+}
